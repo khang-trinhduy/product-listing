@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title></title>
+    <link rel="stylesheet" href="css/detail.css" />
+    <script type="module" src="js/detail.js"></script>
   </head>
   <body>
     <header>
@@ -16,54 +18,44 @@
     <div class="container">
       <div class="slide-container">
         <div class="flex-slide">
-          <div class="img-holder">
-            <img src="" alt="" />
-            <img src="" alt="" />
-            <img src="" alt="" />
-          </div>
-          <div class="info-holder">
-            <div class="project">
-              <p class="small-bold">Vinhomes Grand Park</p>
-            </div>
-            <div class="address">
-              <img src="" alt="" />
-              <p class="address-line">
-                Gia Lâm, Hà Nội
-              </p>
-            </div>
-            <div class="room">
-              <p class="medium-bold">
-                CĂN HỘ S2.065A11 - TÒA S2.06
-              </p>
-            </div>
-            <div class="icon-content">
-              <img src="assets/room.png" alt="room" />
-              <p>3PN</p>
-              <img src="assets/area.png" alt="area" />
-              <p>75.6m2</p>
-              <img src="assets/toilet.png" alt="toiloet" />
-              <p>2</p>
-              <img src="assets/compass.jpg" alt="compass" />
-              <p>TB-TN</p>
-            </div>
-            <div class="price-note">
-              <p>Giá niêm yết</p>
-              <img src="assets/note.png" alt="" />
-            </div>
-            <div class="real-price">
-              <p class="money-line">
-                2.032.002.000đ
-              </p>
-            </div>
-            <!-- more -->
-            <div class="button-holder">
-              <div class="buy-button">
-                Mua ngay
+          <div class="carousel">
+            <img
+              class="change-button previous"
+              src="assets/icons/previous.png"
+              alt="previous"
+            />
+            <img
+              class="change-button next"
+              src="assets/icons/next.png"
+              alt="next"
+            />
+            <div class="manual-div">
+              <div class="manual-holder active">
+                <img
+                  class="manual-button s1"
+                  src="assets/icons/dot.png"
+                  alt="1"
+                />
+              </div>
+              <div class="manual-holder">
+                <img
+                  class="manual-button s2"
+                  src="assets/icons/dot.png"
+                  alt="2"
+                />
+              </div>
+              <div class="manual-holder">
+                <img
+                  class="manual-button s3"
+                  src="assets/icons/dot.png"
+                  alt="3"
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="intro-container">
         <h1>Giới thiệu</h1>
         <div class="intro-main">
@@ -90,6 +82,54 @@
         </div>
       </div>
       <div class="additional-info"></div>
+
+      <div class="sticky-helper">
+        <div class="info-holder">
+          <div class="bottom-content">
+            <div class="left-tilt">
+              <div class="real-price">
+                <p class="price-line">
+                  2.032.002.000đ
+                </p>
+                <div class="room">
+                  <p class="medium-bold">
+                    CĂN HỘ S2.065A11 - TÒA S2.06
+                  </p>
+                </div>
+                <div class="address">
+                  <p class="address-line">
+                    Gia Lâm, Hà Nội
+                  </p>
+                </div>
+                <div class="project">
+                  <p class="small-bold">Vinhomes Grand Park</p>
+                </div>
+              </div>
+            </div>
+            <div class="right-tilt">
+              <div class="icon-content">
+                <img src="assets/room.png" alt="room" />
+                <p>3PN</p>
+                <img src="assets/area.png" alt="area" />
+                <p>75.6m2</p>
+                <img src="assets/toilet.png" alt="toiloet" />
+                <p>2</p>
+                <img src="assets/compass.jpg" alt="compass" />
+                <p>TB-TN</p>
+              </div>
+            </div>
+          </div>
+          <div class="button-holder">
+            <div class="buy-button">
+              Mua ngay
+            </div>
+            <div class="consult-button">
+              Tư vấn
+            </div>
+          </div>
+          <!-- more -->
+        </div>
+      </div>
     </div>
   </body>
 </html>

@@ -1,0 +1,226 @@
+body {
+  margin: unset;
+}
+
+.container,
+.header {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.slide-container {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-slide {
+  width: 96vw;
+  max-width: 740px;
+  min-width: 320px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-items: flex-start;
+  align-items: center;
+}
+
+.carousel {
+  z-index: 3;
+  width: 100%;
+  position: relative;
+}
+
+.carousel img {
+  object-fit: contain;
+  width: 100%;
+  display: none;
+}
+
+.carousel img.active {
+  display: block;
+}
+
+.info-holder {
+  z-index: 2;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid rgba(0, 0, 0, 0.525);
+  position: sticky;
+  width: 96vw;
+  max-width: 380px;
+  min-width: 320px;
+  box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.225);
+}
+
+.sticky-helper {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+}
+
+.change-button,
+.manual-div {
+  z-index: 2;
+  position: absolute;
+  display: block !important;
+}
+
+.change-button {
+  cursor: pointer;
+  height: 44px;
+  width: auto !important;
+  top: 43%;
+}
+
+.change-button:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.next {
+  right: 0;
+}
+
+.manual-button {
+  width: 22px !important;
+}
+
+.manual-div {
+  bottom: 0;
+  display: flex !important;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 25px;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
+}
+
+.manual-div img {
+  display: block !important;
+  cursor: pointer;
+  width: 15px !important;
+}
+
+.manual-holder {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.0125);
+}
+
+.manual-holder.active {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.small-bold {
+  font-weight: 555;
+  margin: unset;
+}
+
+.address-line {
+  font-weight: 400;
+  margin: unset;
+  font-size: smaller;
+}
+
+.medium-bold {
+  font-size: 12px;
+  margin: unset;
+  font-weight: 600;
+}
+
+.bottom-content {
+  width: 96vw;
+  max-width: 380px;
+  min-width: 320px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+
+.bottom-content a {
+  text-decoration: unset;
+  color: #292929;
+  font-weight: 555;
+  font-size: 12px;
+  margin: unset;
+}
+
+.icon-content {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: start;
+  align-items: center;
+  width: 140px;
+  padding: 11px 0;
+}
+
+.icon-content img {
+  width: 18px;
+  height: 18px;
+  padding: 0 5px;
+}
+
+.icon-content p {
+  font-size: smaller;
+  font-weight: 450;
+  font-size: 12px;
+  padding: 0 2px;
+  margin: unset;
+}
+
+.real-price {
+  width: 100%;
+}
+
+.price-line {
+  color: teal;
+  padding: 6.5px 0;
+  font-size: 29px;
+  font-weight: 600;
+  font-family: initial;
+  margin: unset;
+}
+
+.button-holder {
+  width: 350px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+}
+
+.buy-button,
+.consult-button {
+  padding: 12.5px 10px;
+  width: 148px;
+  cursor: pointer;
+  background: teal;
+  text-align: center;
+  font-size: 18.5px;
+  font-weight: 555;
+  color: white;
+}
+
+.consult-button {
+  background: white;
+  color: teal;
+  border: 1px solid rgba(0, 0, 0, 0.55);
+}
+
+.buy-button:hover,
+.consult-button:hover {
+  opacity: 0.65;
+  transition: 0.22s linear;
+}

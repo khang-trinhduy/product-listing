@@ -1,6 +1,13 @@
 import product from "../data/product.js";
 
-let PRODUCT_SIZE = 14;
+window.$$ = document.querySelectorAll.bind(document);
+window.$ = document.querySelector.bind(document);
+
+Node.prototype.on = window.on = function (name, fn) {
+  this.addEventListener(name, fn);
+};
+
+let PRODUCT_SIZE = 18;
 let PRODUCTS = [];
 let PRODUCT_CONTAINER = null;
 let IMAGE_SRC = [
@@ -45,7 +52,7 @@ function createProductCard(product) {
   topDiv.classList.add("top-picture");
   container.appendChild(topDiv);
   let img = document.createElement("img");
-  let src = getRandomImage(IMAGE_SRC);
+  let src = product.picture;
   img.setAttribute("src", src);
   img.setAttribute("alt", "Hình ảnh minh họa");
   topDiv.appendChild(img);
@@ -53,26 +60,19 @@ function createProductCard(product) {
   let bottomDiv = document.createElement("div");
   bottomDiv.classList.add("bottom-content");
   container.appendChild(bottomDiv);
-  let link = document.createElement("a");
-  link.setAttribute("href", "/detail?room=" + product.code);
-  link.textContent = "CĂN HỘ " + product.code + " - TÒA " + product.block;
-  bottomDiv.appendChild(link);
 
-  let icons = createIcons(product);
-  bottomDiv.appendChild(icons);
+  // let noteDiv = document.createElement("div");
+  // noteDiv.classList.add("price-note");
+  // let priceNote = document.createElement("p");
+  // priceNote.classList.add("note-line");
+  // priceNote.textContent = "Giá niêm yết";
+  // let noteImg = document.createElement("img");
+  // noteImg.classList.add("note-img");
+  // noteImg.setAttribute("src", "assets/note.png");
+  // noteDiv.appendChild(priceNote);
+  // noteDiv.appendChild(noteImg);
 
-  let noteDiv = document.createElement("div");
-  noteDiv.classList.add("price-note");
-  let priceNote = document.createElement("p");
-  priceNote.classList.add("note-line");
-  priceNote.textContent = "Giá niêm yết";
-  let noteImg = document.createElement("img");
-  noteImg.classList.add("note-img");
-  noteImg.setAttribute("src", "assets/note.png");
-  noteDiv.appendChild(priceNote);
-  noteDiv.appendChild(noteImg);
-
-  bottomDiv.appendChild(noteDiv);
+  // bottomDiv.appendChild(noteDiv);
 
   let priceDiv = document.createElement("div");
   priceDiv.classList.add("price-real");
@@ -88,20 +88,34 @@ function createProductCard(product) {
   );
   bottomDiv.appendChild(priceDiv);
 
-  let buttonDiv = document.createElement("div");
-  buttonDiv.classList.add("button-holder");
-  let button = document.createElement("div");
-  button.classList.add("buy-button");
-  button.textContent = "Mua ngay";
-  buttonDiv.appendChild(button);
+  let link = document.createElement("a");
+  link.setAttribute("href", "/detail?room=" + product.code);
+  link.textContent = "CĂN HỘ " + product.code + " - TÒA " + product.block;
+  priceDiv.appendChild(link);
 
-  bottomDiv.appendChild(buttonDiv);
+  let icons = createIcons(product);
+  bottomDiv.appendChild(icons);
+
+  // let buttonDiv = document.createElement("div");
+  // buttonDiv.classList.add("button-holder");
+  // let button = document.createElement("div");
+  // button.classList.add("buy-button");
+  // button.textContent = "Mua ngay";
+  // button.on("click", (e) => productCardClickHandle(e));
+  // buttonDiv.appendChild(button);
+  container.addEventListener("click", () => productCardClickHandle(product));
+
+  // bottomDiv.appendChild(buttonDiv);
   return container;
 }
 
 function getRandomImage(array) {
   let random = getRandomInt(array.length);
   return array[random];
+}
+
+function productCardClickHandle(product) {
+  window.location.href = `/detail.html?room=${product.code}`;
 }
 
 function getRandomInt(max) {
