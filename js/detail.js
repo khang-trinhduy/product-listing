@@ -15,8 +15,18 @@ const PICTURE_POOL = [
   "assets/slides/2PN+0.5_3.png",
   "assets/slides/1PN_3_large.png",
 ];
+
+const BEDROOM_POOL = [
+  "assets/br/1br+.jpg",
+  "assets/br/2br+.jpg",
+  "assets/br/2br.jpg",
+  "assets/br/3br.jpg",
+  "assets/br/stu.jpg",
+];
+
 let MANUAL = false;
 let CURRENT_SLIDE = 0;
+let CURRENT_TAB = 0;
 
 Node.prototype.on = window.on = function (name, fn) {
   this.addEventListener(name, fn);
@@ -31,11 +41,17 @@ window.on("load", () => {
   let intro = $(".intro-content");
   intro.textContent = getIntro(currentProduct.bedroom);
 
-  let loc = $(".loc-line");
+  let loc = $(".room-direction");
   loc.textContent = `Căn hộ có hướng ban công là Hướng ${currentProduct.vDirection}`;
+
+  let mainImg = $(".main-img");
+  mainImg.setAttribute("src", getMainImage(currentProduct.bedroom));
 
   let util = $(".util-content");
   util.appendChild(getUtilities());
+
+  let navLinks = $$(".nav-link");
+  setNavLinkEvent(navLinks);
 
   let slides = getPictures(currentProduct);
   slides.forEach((slide) => {
@@ -60,6 +76,45 @@ window.on("load", () => {
     changeCircle();
   });
 });
+
+function getMainImage(br) {
+  switch (br.toLowerCase()) {
+    case "studio":
+      return BEDROOM_POOL[4];
+    case "3pn":
+      return BEDROOM_POOL[3];
+    case "1pn":
+      return BEDROOM_POOL[0];
+    default:
+      return BEDROOM_POOL[1];
+  }
+}
+
+function setNavLinkEvent(navs) {
+  navs.forEach((nav, i) => {
+    nav.on("click", (event) => {
+      CURRENT_TAB = i;
+      changeTab(event);
+      changeTabDiv();
+    });
+  });
+}
+
+function changeTab(event) {
+  const activeNav = $(".nav-link.active");
+  activeNav.classList.remove("active");
+  let nav = event.target;
+  if (!nav.classList.contains("active")) {
+    nav.classList.add("active");
+  }
+}
+
+function changeTabDiv() {
+  const activeTabDiv = $(".tab-item.active");
+  activeTabDiv.classList.remove("active");
+  const tabDivs = $$(".tab-item");
+  tabDivs[CURRENT_TAB].classList.add("active");
+}
 
 function getUtilities() {
   const util = utilities.sort((a, b) => {

@@ -8,9 +8,95 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
+.header-line {
+  font-size: medium;
+  font-weight: 555;
+}
+
+.header {
+  text-align: center;
+}
+
 .slide-container {
   display: flex;
   justify-content: center;
+}
+
+.proj-holder {
+  position: relative;
+  width: 96vw;
+  max-width: 740px;
+  min-width: 320px;
+  text-align: center;
+}
+
+.small-des {
+  font-size: 12px;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.project-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.main-img
+{
+  width: 65%;
+}
+
+.flex-proj {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.tab-item {
+  display: none;
+  width: 96vw;
+  max-width: 740px;
+  min-width: 320px;
+  min-height: 50vh;
+  padding: 0 0 10vh 0;
+}
+
+li {
+  font-size: small;
+}
+
+.tab-item.active {
+  display: block;
+}
+
+.nav-menu {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 96vw;
+  max-width: 740px;
+  min-width: 320px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.225);
+}
+
+.nav-link {
+  padding: 2.15vh 1vw;
+  z-index: 1;
+  cursor: pointer;
+}
+.nav-link.active {
+  z-index: 2;
+  border-bottom: 1px solid blue;
+}
+
+.nav-link {
+  width: 25%;
+  text-align: center;
+  font-weight: 555;
+  font-size: smaller;
 }
 
 .flex-slide {
@@ -40,6 +126,7 @@ body {
 }
 
 .info-holder {
+  padding-block-end: 1vh;
   z-index: 2;
   display: flex;
   flex-flow: column nowrap;
@@ -59,8 +146,8 @@ body {
   flex-flow: row;
   justify-content: center;
   align-items: center;
-  position: sticky;
-  bottom: 0;
+  position: relative;
+  bottom: 1.2vh;
 }
 
 .change-button,

@@ -1,5 +1,5 @@
 loader [-]
-project picture [-]
-vertical picture [-]
+project picture [+]
+vertical picture [+]
 filter [-]
-header [-]
+header [+]
