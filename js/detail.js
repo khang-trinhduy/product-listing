@@ -9,11 +9,12 @@ const PICTURE_POOL = [
   "assets/slides/1PN+1_3_large.png",
   "assets/slides/1PN+1_4_large.png",
   "assets/slides/2PN+0.5_2.png",
-  "assets/slides/3PN_2_large.png",
   "assets/slides/3PN_3_large.png",
   "assets/slides/2PN+0.5_3.png",
   "assets/slides/1PN_3_large.png",
 ];
+let MANUAL = false;
+let CURRENT_SLIDE = 0;
 
 Node.prototype.on = window.on = function (name, fn) {
   this.addEventListener(name, fn);
@@ -30,7 +31,93 @@ window.on("load", () => {
     carousel.appendChild(slide);
   });
   setInterval(() => swapPicture(slides), 3000);
+
+  const circles = $$(".manual-holder");
+  setCircleEvent(circles);
+
+  const next = $(".change-button.next");
+  const previous = $(".change-button.previous");
+  next.on("click", () => {
+    MANUAL = true
+    moveToNextSlide();
+    changeCircle();
+  });
+  previous.on("click", () => {
+    MANUAL = true
+    moveToPreviousSlide();
+    changeCircle();
+  });
 });
+
+function setCircleEvent(circles) {
+  circles.forEach((circle, i) => {
+    circle.on("click", (e) => {
+      handleCircleClick(e);
+      CURRENT_SLIDE = i;
+      changeSlide();
+    });
+  });
+}
+
+function handleCircleClick(event) {
+  MANUAL = true;
+  let circle = event.target;
+  if (circle.nodeName === "IMG") {
+    circle = circle.closest(".manual-holder");
+  }
+  const activeCircle = $(".manual-holder.active");
+  activeCircle.classList.remove("active");
+  if (!circle.classList.contains("active")) {
+    circle.classList.add("active");
+  }
+}
+
+function moveToNextSlide() {
+  console.log("move next");
+
+  const slides = $$(".slide-img");
+  slides.forEach((slide) => {
+    if (slide.classList.contains("active")) {
+      slide.classList.remove("active");
+    }
+  });
+  CURRENT_SLIDE = CURRENT_SLIDE + 1 <= 2 ? CURRENT_SLIDE + 1 : 0;
+  slides[CURRENT_SLIDE].classList.add("active");
+  changeCircle();
+}
+
+function moveToPreviousSlide() {
+  console.log("move previous");
+  const slides = $$(".slide-img");
+  slides.forEach((slide) => {
+    if (slide.classList.contains("active")) {
+      slide.classList.remove("active");
+    }
+  });
+  CURRENT_SLIDE = CURRENT_SLIDE - 1 >= 0 ? CURRENT_SLIDE - 1 : 2;
+  slides[CURRENT_SLIDE].classList.add("active");
+  changeCircle();
+}
+
+function changeSlide() {
+  const slides = $$(".slide-img");
+  slides.forEach((slide) => {
+    if (slide.classList.contains("active")) {
+      slide.classList.remove("active");
+    }
+  });
+  slides[CURRENT_SLIDE].classList.add("active");
+}
+
+function changeCircle() {
+  const circles = $$(".manual-holder");
+  circles.forEach((circle) => {
+    if (circle.classList.contains("active")) {
+      circle.classList.remove("active");
+    }
+  });
+  circles[CURRENT_SLIDE].classList.add("active");
+}
 
 function getPictures(product) {
   let result = [];
@@ -42,6 +129,9 @@ function getPictures(product) {
 }
 
 function swapPicture(pictures) {
+  if (MANUAL) {
+    return;
+  }
   let showing = pictures.find((picture) =>
     picture.classList.contains("active")
   );
@@ -50,6 +140,8 @@ function swapPicture(pictures) {
     pictures[currentIndex + 1 >= pictures.length ? 0 : currentIndex + 1];
   showing.classList.remove("active");
   nextPicture.classList.add("active");
+  CURRENT_SLIDE = currentIndex + 1 <= 2 ? currentIndex + 1 : 0;
+  changeCircle(currentIndex + 1 <= 2 ? currentIndex + 1 : 0);
 }
 
 function getRandomPictures(except) {
@@ -73,6 +165,7 @@ function getRandomInt(max) {
 function createPicture(picture) {
   let image = document.createElement("img");
   image.setAttribute("src", picture);
+  image.classList.add("slide-img");
   return image;
 }
 
