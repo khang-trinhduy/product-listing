@@ -1,4 +1,6 @@
 import product from "../data/product.js";
+import quote from "../data/quote.js";
+import utilities from "../data/utility.js";
 window.$$ = document.querySelectorAll.bind(document);
 window.$ = document.querySelector.bind(document);
 
@@ -26,10 +28,20 @@ window.on("load", () => {
 
   let carousel = $(".carousel");
 
+  let intro = $(".intro-content");
+  intro.textContent = getIntro(currentProduct.bedroom);
+
+  let loc = $(".loc-line");
+  loc.textContent = `Căn hộ có hướng ban công là Hướng ${currentProduct.vDirection}`;
+
+  let util = $(".util-content");
+  util.appendChild(getUtilities());
+
   let slides = getPictures(currentProduct);
   slides.forEach((slide) => {
     carousel.appendChild(slide);
   });
+
   setInterval(() => swapPicture(slides), 3000);
 
   const circles = $$(".manual-holder");
@@ -38,16 +50,45 @@ window.on("load", () => {
   const next = $(".change-button.next");
   const previous = $(".change-button.previous");
   next.on("click", () => {
-    MANUAL = true
+    MANUAL = true;
     moveToNextSlide();
     changeCircle();
   });
   previous.on("click", () => {
-    MANUAL = true
+    MANUAL = true;
     moveToPreviousSlide();
     changeCircle();
   });
 });
+
+function getUtilities() {
+  const util = utilities.sort((a, b) => {
+    let x = a.slice(0, 1);
+    let y = b.slice(0, 1);
+    if (x > y) {
+      return 1;
+    } else if (x === y) {
+      return 0;
+    } else return -1;
+  });
+  const ul = document.createElement("ul");
+  for (let i = 0; i < util.length; i++) {
+    const ut = util[i];
+    const li = document.createElement("li");
+    li.textContent = ut;
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+function getIntro(code) {
+  code = code.toLowerCase();
+  code = code.replace("+", "p");
+  code = code.replace("1", "o");
+  code = code.replace("2", "t");
+  code = code.replace("3", "th");
+  return quote[code];
+}
 
 function setCircleEvent(circles) {
   circles.forEach((circle, i) => {
