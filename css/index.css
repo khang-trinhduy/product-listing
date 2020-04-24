@@ -7,18 +7,18 @@
 }
 
 .filter-card {
-    display: flex;
-    justify-content: center;
-    width: 96vw;
-    max-width: 1140px;
-    min-width: 375px;
+  display: flex;
+  justify-content: center;
+  width: 96vw;
+  max-width: 1140px;
+  min-width: 375px;
 }
 
 .filter-tool {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .product-list {
@@ -41,50 +41,42 @@
   margin-block-end: 5vh;
 }
 
-.product-card:hover {
-  cursor: pointer;
-  box-shadow: unset;
-  transform: translate(5px, -8px);
-  box-shadow: -5px 8px 0px 0px rgba(5, 131, 131, 0.25),
-    -4px 7px 0px 0px rgba(5, 131, 131, 0.25),
-    -3px 6px 0px 0px rgba(5, 131, 131, 0.25),
-    -2px 5px 0px 0px rgba(5, 131, 131, 0.25),
-    -1px 4px 0px 0px rgba(5, 131, 131, 0.25),
-    0px 3px 0px 0px rgba(5, 131, 131, 0.25),
-    0px 2px 0px 0px rgba(5, 131, 131, 0.25),
-    0.5px -0.5px 0px 0px rgba(5, 131, 131, 0.25);
-  transition: 0.12s linear;
-}
-
 .top-picture {
   width: 100%;
   position: relative;
+  background-size: contain;
+  height: 241px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.top-picture:hover {
-  cursor: pointer;
+.top-picture.active {
+  animation: scale 0.35s linear 0.01s 1 normal forwards;
 }
 
-.top-picture img {
-  object-fit: cover;
-  height: auto;
-  width: 100%;
+@keyframes scale {
+  0% {
+    background-size: 100% 100%;
+  }
+  100% {
+    background-size: 135% 135%;
+  }
 }
 
 .bottom-content {
   display: flex;
-  padding-block-end: 0.8vh;
-  flex-flow: row nowrap;
-  justify-content: space-around;
+  padding-block-end: 2.2vh;
+  flex-flow: column nowrap;
+  justify-content: center;
   align-items: center;
 }
 
 .bottom-content a {
   text-decoration: unset;
   color: #292929;
-  font-weight: 555;
-  font-size: 12px;
-  margin: unset;
+  font-weight: 620;
+  font-size: 16px;
+  margin-block-start: 0.8em;
 }
 
 .icon-content {
@@ -92,7 +84,6 @@
   flex-flow: row wrap;
   justify-content: start;
   align-items: center;
-  padding-inline-end: 0.6vw;
 }
 
 .icon-content img {
@@ -102,11 +93,9 @@
 }
 
 .icon-content p {
-  font-size: smaller;
-  font-weight: 450;
-  font-size: 12px;
-  padding: 0 2px;
-  margin: unset;
+  padding-right: 12px;
+  font-size: 14px;
+  font-weight: 340;
 }
 
 .price-note {
@@ -117,7 +106,9 @@
 
 .note-line {
   font-size: small;
-  font-weight: 555;
+  font-weight: 655;
+  margin: unset;
+  opacity: 0.5;
 }
 
 .price-note img {
@@ -125,17 +116,27 @@
   height: 18px;
 }
 
+.title-content {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.507);
+}
+
+.title-content p {
+  margin-block-end: 0.8em;
+  font-size: small;
+  font-weight: 620;
+}
+
 .price-real {
-  padding-inline-start: 0.6vw;
   width: 100%;
+  text-align: center;
 }
 
 .price-line {
   color: teal;
   font-size: 29px;
+  margin-block-start: 0.4em;
   font-weight: 600;
   font-family: initial;
-  margin: unset;
 }
 
 .button-holder {

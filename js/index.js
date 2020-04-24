@@ -50,29 +50,47 @@ function createProductCard(product) {
 
   let topDiv = document.createElement("div");
   topDiv.classList.add("top-picture");
-  container.appendChild(topDiv);
-  let img = document.createElement("img");
   let src = product.picture;
-  img.setAttribute("src", src);
-  img.setAttribute("alt", "Hình ảnh minh họa");
-  topDiv.appendChild(img);
+  topDiv.style.backgroundImage = 'url(' + src + ')'
+  container.appendChild(topDiv);
+  // let img = document.createElement("img");
+  // img.setAttribute("src", src);
+  // img.setAttribute("alt", "Hình ảnh minh họa");
+  // topDiv.appendChild(img);
 
+  container.addEventListener("mouseenter", () => handleMouseEnter(topDiv));
+  container.addEventListener("mouseleave", () => handleMouseLeave(topDiv));
+  // after image
   let bottomDiv = document.createElement("div");
+  let titleDiv = document.createElement("div");
+  titleDiv.classList.add("title-content");
+  let title = document.createElement("p");
+  title.textContent = "Vinhome Grand Park";
+  titleDiv.appendChild(title);
+  bottomDiv.appendChild(titleDiv);
+
+  let link = document.createElement("a");
+  link.setAttribute("href", "/detail.html?room=" + product.code);
+  link.textContent = "CĂN HỘ " + product.code + " - TÒA " + product.block;
+  bottomDiv.appendChild(link);
+
   bottomDiv.classList.add("bottom-content");
   container.appendChild(bottomDiv);
 
-  // let noteDiv = document.createElement("div");
-  // noteDiv.classList.add("price-note");
-  // let priceNote = document.createElement("p");
-  // priceNote.classList.add("note-line");
-  // priceNote.textContent = "Giá niêm yết";
-  // let noteImg = document.createElement("img");
-  // noteImg.classList.add("note-img");
-  // noteImg.setAttribute("src", "assets/note.png");
-  // noteDiv.appendChild(priceNote);
-  // noteDiv.appendChild(noteImg);
+  let icons = createIcons(product);
+  bottomDiv.appendChild(icons);
 
-  // bottomDiv.appendChild(noteDiv);
+  let noteDiv = document.createElement("div");
+  noteDiv.classList.add("price-note");
+  let priceNote = document.createElement("p");
+  priceNote.classList.add("note-line");
+  priceNote.textContent = "Giá niêm yết";
+  let noteImg = document.createElement("img");
+  noteImg.classList.add("note-img");
+  noteImg.setAttribute("src", "assets/note.png");
+  noteDiv.appendChild(priceNote);
+  // noteDiv.appendChild(noteImg);
+  bottomDiv.appendChild(noteDiv);
 
   let priceDiv = document.createElement("div");
   priceDiv.classList.add("price-real");
@@ -88,25 +106,24 @@ function createProductCard(product) {
   );
   bottomDiv.appendChild(priceDiv);
 
-  let link = document.createElement("a");
-  link.setAttribute("href", "/detail?room=" + product.code);
-  link.textContent = "CĂN HỘ " + product.code + " - TÒA " + product.block;
-  priceDiv.appendChild(link);
-
-  let icons = createIcons(product);
-  bottomDiv.appendChild(icons);
-
-  // let buttonDiv = document.createElement("div");
-  // buttonDiv.classList.add("button-holder");
-  // let button = document.createElement("div");
-  // button.classList.add("buy-button");
-  // button.textContent = "Mua ngay";
-  // button.on("click", (e) => productCardClickHandle(e));
-  // buttonDiv.appendChild(button);
+  let buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("button-holder");
+  let button = document.createElement("div");
+  button.classList.add("buy-button");
+  button.textContent = "Mua ngay";
+  button.on("click", (e) => productCardClickHandle(e));
+  buttonDiv.appendChild(button);
   container.addEventListener("click", () => productCardClickHandle(product));
 
-  // bottomDiv.appendChild(buttonDiv);
+  bottomDiv.appendChild(buttonDiv);
   return container;
+}
+
+function handleMouseEnter(div) {
+  div.classList.add("active");
+}
+function handleMouseLeave(div) {
+  div.classList.remove("active");
 }
 
 function getRandomImage(array) {
