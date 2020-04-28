@@ -18,100 +18,91 @@
       <div class="filter-card">
         <div class="filter-tool">
           <h2>Phần tìm kiếm này chưa hoạt động đâu!</h2>
-          <select name="project" id="fproj">
+          <select name="project" class="select" id="fproj">
             <option value="">Vinhomes Grand Park</option>
           </select>
-          <select name="block" id="fblock">
+          <select name="block" class="select" id="fblock">
             <option value="">Chọn tòa</option>
-            <option>S1.01</option>
-            <option>S1.02</option>
-            <option>S1.03</option>
-            <option>S1.05</option>
-            <option>S1.06</option>
-            <option>S1.07</option>
-            <option>S2.01</option>
-            <option>S2.02</option>
-            <option>S2.03</option>
-            <option>S2.05</option>
-            <option>S3.01</option>
-            <option>S3.02</option>
-            <option>S3.05</option>
-            <option>S5.01</option>
-            <option>S3.03</option>
-            <option>S5.02</option>
-            <option>S5.03</option>
+            <option value="S101">S1.01</option>
+            <option value="S102">S1.02</option>
+            <option value="S103">S1.03</option>
+            <option value="S105">S1.05</option>
+            <option value="S106">S1.06</option>
+            <option value="S107">S1.07</option>
+            <option value="S201">S2.01</option>
+            <option value="S202">S2.02</option>
+            <option value="S203">S2.03</option>
+            <option value="S205">S2.05</option>
+            <option value="S301">S3.01</option>
+            <option value="S302">S3.02</option>
+            <option value="S305">S3.05</option>
+            <option value="S501">S5.01</option>
+            <option value="S303">S3.03</option>
+            <option value="S502">S5.02</option>
+            <option value="S503">S5.03</option>
           </select>
-          <select name="room" id="froom">
+          <select name="bedroom" class="select" id="froom">
             <option value="">Loại căn hộ</option>
-            <option>Studio</option>
-            <option>1PN</option>
-            <option>1PN + 1</option>
-            <option>2PN</option>
-            <option>2PN + 1</option>
-            <option>3PN</option>
-            <option>Shophouse</option>
-            <option>Nhà phố</option>
-            <option>Shop</option>
-            <option>Biệt thự</option>
-            <option>Nhà phố thương mại</option>
+            <option value="Studio">Studio</option>
+            <option value="1pn">1PN</option>
+            <option value="2pn1wc">2PN1WC</option>
+            <option value="2pn+">2PN+</option>
+            <option value="2pn2wc">2PN2WC</option>
+            <option value="3pn">3PN</option>
           </select>
-          <select name="price" id="fprice">
+          <select name="displayPrice" class="select" id="fprice">
             <option value="">Khoảng giá</option>
-            <option><= 1 Tỷ</option>
-            <option>1 tỷ đến 2 tỷ</option>
-            <option>2 tỷ đến 3 tỷ</option>
-            <option>>= 3 tỷ</option>
+            <option value="1"><= 1 Tỷ</option>
+            <option value="2">1 tỷ đến 2 tỷ</option>
+            <option value="3">2 tỷ đến 3 tỷ</option>
+            <option value="4">> 3 tỷ</option>
           </select>
-          <select name="payment" id="fpayment">
+          <!-- <select name="payment" class="select" id="fpayment">
             <option value="">Tình trạng căn hộ</option>
-            <option value="">Đã ký</option>
-            <option value="">Chưa ký</option>
-            <option value="">Chính chủ</option>
-            <option value="">Sale</option>
+            <option value="signed">Đã ký</option>
+            <option value="unsigned">Chưa ký</option>
+            <option value="owner">Chính chủ</option>
+            <option value="sale">Sale</option>
           </select>
-          <select name="status" id="fstatus">
+          <select name="status" class="select" id="fstatus">
             <option value="">Trạng thái bán</option>
-            <option value="">Đã bán</option>
-            <option value="">Chưa bán</option>
-            <option value="">Hết NC</option>
+            <option value="sold">Đã bán</option>
+            <option value="stock">Chưa bán</option>
+            <option value="dn">Hết NC</option>
           </select>
-          <select name="payment" id="fpayment">
+          <select name="payment" class="select" id="fpayment">
             <option value="">Trạng thái thanh toán</option>
-            <option value="">10%</option>
-            <option value="">15%</option>
-            <option value="">Đã ký HĐMB</option>
-          </select>
-          <select name="floor" id="ffloor">
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            <option value="signed">Đã ký HĐMB</option>
+          </select> -->
+          <select name="floor" class="select" id="ffloor">
             <option value="">Tầng</option>
-            <option>01</option>
-            <option>02</option>
-            <option>03</option>
-            <option>04</option>
-            <option>05</option>
-            <option>06</option>
-            <option>07</option>
-            <option>08</option>
-            <option>09</option>
-            <option>10</option>
-            <option>11</option>
-            <option>12</option>
-            <option>13</option>
-            <option>14</option>
-            <option>15</option>
-            <option>16</option>
-            <option>17</option>
-            <option>18</option>
-            <option>19</option>
-            <option>20</option>
-            <option>21</option>
-            <option>23</option>
-            <option>29</option>
-            <option>90</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+            <option value="17">17</option>
+            <option value="18">18</option>
+            <option value="19">19</option>
+            <option value="20">20</option>
+            <option value="21">21</option>
+            <option value="23">23</option>
+            <option value="29">29</option>
+            <option value="90">90</option>
           </select>
-          <div class="advanced-filter">
-            <span class="advanced-icon"></span>
-            <p>Tìm kiếm nâng cao</p>
-          </div>
         </div>
       </div>
 
@@ -121,12 +112,13 @@
           <i>*Hình ảnh chỉ mang tính chất minh họa</i>
         </div>
         <div class="result-fitler">
-          <select name="fresult" id="fresult">
-            <option value="">Căn hộ được quan tâm nhất</option>
-            <option value="">Sản phẩm mới nhất</option>
-            <option value="">Giá từ thấp đến cao</option>
-            <option value="">Giá từ cao xuống thấp</option>
+          <select name="result" class="select" id="fresult">
+            <option value="price_asc">Giá từ thấp đến cao</option>
+            <option value="price_des">Giá từ cao xuống thấp</option>
           </select>
+        </div>
+        <div class="reset">
+          Hủy lọc
         </div>
       </div>
 

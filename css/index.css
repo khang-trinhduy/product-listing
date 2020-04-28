@@ -87,6 +87,12 @@
   align-items: center;
 }
 
+.select {
+  outline: unset;
+  padding: 7.2px 5px;
+  padding-right: unset;
+}
+
 .icon-content img {
   width: 18px;
   height: 18px;

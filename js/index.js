@@ -10,6 +10,7 @@ Node.prototype.on = window.on = function (name, fn) {
 let PRODUCT_SIZE = 18;
 let PRODUCTS = [];
 let PRODUCT_CONTAINER = null;
+let FILTERED_PRODUCTS = null;
 let IMAGE_SRC = [
   "assets/images/1PN_1_medium.png",
   "assets/images/1PN+1_1_medium.png",
@@ -25,18 +26,91 @@ let IMAGE_SRC = [
   "assets/images/3PN_2_medium.png",
 ];
 
+function filterPrice(products, key) {
+  switch (key) {
+    case 1:
+      return products.filter(
+        (item) => parseInt(item.displayPrice) <= 1000000000
+      );
+    case 2:
+      return products.filter(
+        (item) =>
+          parseInt(item.displayPrice) > 1000000000 &&
+          parseInt(item.displayPrice) <= 2000000000
+      );
+    case 3:
+      return products.filter(
+        (item) =>
+          parseInt(item.displayPrice) > 2000000000 &&
+          parseInt(item.displayPrice) <= 3000000000
+      );
+    case 4:
+      return products.filter(
+        (item) => parseInt(item.displayPrice) > 3000000000
+      );
+  }
+}
+
+function selectHandle() {
+  let products = FILTERED_PRODUCTS || product;
+  let matches;
+  if (this.name === "displayPrice") {
+    matches = filterPrice(products, parseInt(this.value));
+  } else if (this.name === "result") {
+    matches = product.sort((a, b) => {
+      if (this.value === "price_des") {
+        return parseInt(b.displayPrice) - parseInt(a.displayPrice);
+      } else {
+        return parseInt(a.displayPrice) - parseInt(b.displayPrice);
+      }
+    });
+  } else {
+    matches = products.filter(
+      (item) => item[this.name].toLowerCase() === this.value.toLowerCase()
+    );
+  }
+  FILTERED_PRODUCTS =
+    matches.length > PRODUCT_SIZE ? matches.slice(0, PRODUCT_SIZE) : matches;
+  loadProduct(FILTERED_PRODUCTS);
+}
+
 window.addEventListener("load", function (e) {
   this.window.data = product;
   PRODUCT_CONTAINER = document.querySelector(".product-list");
-  loadProduct(PRODUCT_SIZE);
+  const items = product.slice(0, PRODUCT_SIZE);
+  loadProduct(items);
+
+  const selects = this.document.querySelectorAll(".select");
+  selects.forEach((select) => {
+    select.addEventListener("change", selectHandle);
+  });
+
+  const reset = this.document.querySelector('.reset')
+  reset.on('click', removeFilter)
 });
 
-function loadProduct(size) {
-  let products = product.slice(0, size);
+function removeFilter() {
+  FILTERED_PRODUCTS = null
+  const items = product.slice(0, PRODUCT_SIZE);
+  loadProduct(items);
+}
+
+function displayLoader() {}
+
+function removeLoader() {}
+
+function clearProduct() {
+  PRODUCT_CONTAINER.innerHTML = "";
+}
+
+function loadProduct(products) {
+  clearProduct();
+  displayLoader();
   products.forEach((product) => {
     addProductCard(product);
   });
   PRODUCTS.push(products);
+  removeLoader();
 }
 
 function addProductCard(product) {
@@ -51,7 +125,7 @@ function createProductCard(product) {
   let topDiv = document.createElement("div");
   topDiv.classList.add("top-picture");
   let src = product.picture;
-  topDiv.style.backgroundImage = 'url(' + src + ')'
+  topDiv.style.backgroundImage = "url(" + src + ")";
   container.appendChild(topDiv);
   // let img = document.createElement("img");
   // img.setAttribute("src", src);
